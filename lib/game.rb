@@ -5,6 +5,7 @@ require_relative "roles/codemaker"
 
 class Game
   ATTEMPTS = 3
+  SLOTS = 4
   def initialize
     @players = [Player.new("Player1", Codebreaker.new), Player.new("Player2", Codemaker.new)]
     @board = Board.new(ATTEMPTS)
@@ -16,7 +17,7 @@ class Game
   end
 
   def start_round(players)
-    puts "\n\n---New round---\nRules: #{ATTEMPTS} attempts, 6 colors, 4 slots"
+    puts "\n\n---New round---\nRules: #{ATTEMPTS} attempts, 6 colors, #{SLOTS} slots"
     @board.code = players[1].role.create_code
     @board.show_board
     (0...ATTEMPTS).each do |index_attempt|

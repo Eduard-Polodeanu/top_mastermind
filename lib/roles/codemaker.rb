@@ -7,8 +7,8 @@ class Codemaker < Role
   end
 
   def play_turn
-    puts "Give feedback to the last guess: [EMPTY/PARTIAL/CORRECT]"
-    super
+    puts "Give feedback to the last guess: #{VALID_FEEDBACK}"
+    obtain_valid_input(VALID_FEEDBACK)
   end
 
   def create_code

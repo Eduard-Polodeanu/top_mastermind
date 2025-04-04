@@ -7,7 +7,7 @@ class Codebreaker < Role
   end
 
   def play_turn
-    puts "Make your guess: [RED GREEN BLUE YELLOW BROWN PINK]"
-    super
+    puts "Make your guess: #{VALID_GUESSES}"
+    obtain_valid_input(VALID_GUESSES)
   end
 end
