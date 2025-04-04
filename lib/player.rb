@@ -1,9 +1,13 @@
-require_relative "roles/role"
-
 class Player
+  attr_accessor :role
+
   def initialize(name, role)
-    puts "New player"
     @name = name
     @role = role
+  end
+
+  def play_turn
+    puts "#{@name} (#{@role.role_name}) it's your turn."
+    @role.play_turn
   end
 end

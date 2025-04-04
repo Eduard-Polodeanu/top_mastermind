@@ -1,5 +1,15 @@
 class Role
+  attr_reader :role_name
+
   def initialize
-    puts "New role"
+  end
+
+  def play_turn
+    input = gets.chomp
+    validated_input(input)
+  end
+
+  def validated_input(input)
+    input
   end
 end
