@@ -4,10 +4,10 @@ require_relative "roles/codebreaker"
 require_relative "roles/codemaker"
 
 class Game
-  ATTEMPTS = 3
+  ATTEMPTS = 8
   SLOTS = 4
   def initialize
-    @players = [Player.new("Player1", Codebreaker.new), Player.new("Player2", Codemaker.new)]
+    @players = [Player.new("Player1", Codebreaker.new("human")), Player.new("Player2", Codemaker.new("computer"))]
     @board = Board.new(ATTEMPTS)
     start_game
   end
@@ -18,13 +18,17 @@ class Game
 
   def start_round(players)
     puts "\n\n---New round---\nRules: #{ATTEMPTS} attempts, 6 colors, #{SLOTS} slots"
-    @board.code = players[1].role.create_code
+    players[1].role.create_code
     @board.show_board
     (0...ATTEMPTS).each do |index_attempt|
       players.each_with_index do |player, index_player|
-        input = player.play_turn
+        input = player.play_turn(@board.rows[index_attempt])
         @board.add_attempt_to_board(input, index_attempt, index_player)
         @board.show_board
+      end
+      if @board.game_win?(@board.rows[index_attempt])
+        puts "You won!"
+        break
       end
     end
   end

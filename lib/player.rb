@@ -6,8 +6,8 @@ class Player
     @role = role
   end
 
-  def play_turn
+  def play_turn(board_row_array)
     puts "#{@name} (#{@role.role_name}) it's your turn."
-    @role.play_turn
+    @role.play_turn(board_row_array)
   end
 end

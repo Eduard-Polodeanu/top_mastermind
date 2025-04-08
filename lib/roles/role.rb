@@ -3,6 +3,11 @@ class Role
   VALID_FEEDBACK = %w[CORRECT PARTIAL WRONG C P W].freeze
   attr_reader :role_name
 
+  def initialize(player_type)
+    @role_name = "NOROLE"
+    @player_type = player_type
+  end
+
   def obtain_valid_input(allowed)
     loop do
       input = gets.chomp.upcase.split

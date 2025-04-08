@@ -1,10 +1,9 @@
 require_relative "roles/codemaker"
 
 class Board
-  attr_accessor :code
+  attr_accessor :code, :rows
 
   def initialize(attempts)
-    @code = []
     @rows = Array.new(attempts) { ["- - - -", "- - - -"] }
   end
 
@@ -19,5 +18,9 @@ class Board
 
   def add_attempt_to_board(attempt, row, column)
     @rows[row][column] = attempt
+  end
+
+  def game_win?(row)
+    row[1].eql?("C C C C")
   end
 end
